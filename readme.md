@@ -28,8 +28,8 @@
 ```txt
 chef,
 indoors, twintails, cowboy shot
-Negative prompt: (worst quality, low quality:1.4)
-Steps: 50, Sampler: DPM++ 2M SDE Karras, CFG scale: 7, Seed: 1, Size: 512x704, Model hash: 1a2f3cebaa, Model: rimochan_random_mix, VAE hash: 500ea30284, VAE: blessed2.vae.safetensors, Eta: 0.68, Script: X/Y/Z plot, X Type: Prompt S/R, X Values: "chef,scientist,witch,priest,maid,magical girl,ninja", Version: v1.7.0
+Negative prompt: (worst quality, low quality:1.2), from behind
+Steps: 50, Sampler: DPM++ 2M SDE Karras, CFG scale: 7, Seed: 1, Size: 640x896, Model hash: c0f0b6c83c, Model: rimochan_random_mix_2.1, VAE hash: 500ea30284, VAE: blessed2.vae.safetensors, Clip skip: 2, Eta: 0.68, Script: X/Y/Z plot, X Type: Prompt S/R, X Values: "chef,scientist,witch,priest,maid,princess,ninja", Y Type: Seed, Y Values: "1,1000", Fixed Y Values: "1, 1000", Version: v1.7.0
 ```
 
 生成的图片是这样:
