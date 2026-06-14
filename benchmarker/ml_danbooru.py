@@ -2,9 +2,7 @@ import json
 import logging
 import os
 import shutil
-from functools import lru_cache
 from threading import Lock
-from typing import Optional
 
 import numpy as np
 from PIL import Image
@@ -26,30 +24,12 @@ def _ensure_onnxruntime():
 
 
 _ensure_onnxruntime()
-from onnxruntime import get_available_providers, get_all_providers, InferenceSession, SessionOptions, \
-    GraphOptimizationLevel
+from onnxruntime import get_available_providers, get_all_providers, InferenceSession, SessionOptions, GraphOptimizationLevel
 
 alias = {
     'gpu': "CUDAExecutionProvider",
     "trt": "TensorrtExecutionProvider",
 }
-
-
-def get_onnx_provider(provider: Optional[str] = None):
-    if not provider:
-        if "CUDAExecutionProvider" in get_available_providers():
-            return "CUDAExecutionProvider"
-        else:
-            return "CPUExecutionProvider"
-    elif provider.lower() in alias:
-        return alias[provider.lower()]
-    else:
-        for p in get_all_providers():
-            if provider.lower() == p.lower() or f'{provider}ExecutionProvider'.lower() == p.lower():
-                return p
-
-        raise ValueError(f'One of the {get_all_providers()!r} expected, '
-                         f'but unsupported provider {provider!r} found.')
 
 
 def resize(pic: Image.Image, size: int, keep_ratio: float = True) -> Image.Image:
@@ -129,7 +109,7 @@ def get_tags_from_image(pic: Image.Image, threshold: float = 0.7, size: int = 51
     real_input = real_input.reshape(1, *real_input.shape)
     with _L:
         if model is None:
-            model = _open_onnx_model(get_onnx_model_file(DEFAULT_MODEL), get_onnx_provider('gpu'))
+            model = _open_onnx_model(get_onnx_model_file(DEFAULT_MODEL), "CUDAExecutionProvider")
         native_output, = model.run(['output'], {'input': real_input})
     output = (1 / (1 + np.exp(-native_output))).reshape(-1)
     pairs = sorted([(CLASSES[i], ratio) for i, ratio in enumerate(output)], key=lambda x: (-x[1], x[0]))

@@ -1,0 +1,10 @@
+fire>=0.7
+safetensors>=0.6
+bayesian-optimization>=3.2
+tensorboard>=2.20
+tensorboardX>=2.6
+diffusers>=0.36
+pillow>=10.4
+tqdm>=4.67.1
+compel==2.0.3
+requests==2.32.5
