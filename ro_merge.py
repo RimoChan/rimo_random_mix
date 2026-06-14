@@ -271,16 +271,6 @@ def ember(models: list[str], output_dir: str = './savedata', bound=(-0.3, 0.8), 
         n_iter=n_iter,
     )
 
-# python .\ro_merge.py --output_dir="C:/Users/Administrator/Desktop/RO_savedata" --models="['C:/Users/Administrator/Desktop/models/waiIllustriousSDXL_v160.safetensors','C:/Users/Administrator/Desktop/models/waiNSFWIllustrious_v150.safetensors','C:/Users/Administrator/Desktop/models/waiNSFWIllustrious_v140.safetensors']" --n_iter=300 --eval_n_iter=100 --bound="(-0.8,1.5)" --neg_penalty=0.1 --seed=7
-
-
-# set PYTORCH_CUDA_ALLOC_CONF=backend:cudaMallocAsync,expandable_segments:True
-# set PYTORCH_ALLOC_CONF=backend:cudaMallocAsync,expandable_segments:True
-# python .\ro_merge.py --output_dir="C:/Users/Administrator/Desktop/RO_savedata" --models="['C:/Users/Administrator/Desktop/models/waiIllustriousSDXL_v160.safetensors','C:/Users/Administrator/Desktop/models/novaAnimeXL_ilV120.safetensors','C:/Users/Administrator/Desktop/models/oneObsession_v18.safetensors']" --n_iter=600 --eval_n_iter=100 --bound="(-0.8,1.5)" --neg_penalty=0.2 --seed=8
-
-
-# tensorboard --logdir=log --host 0.0.0.0 --samples_per_plugin "scalars=1000,images=1000"
-
 
 if __name__ == '__main__':
     fire.Fire(ember)
